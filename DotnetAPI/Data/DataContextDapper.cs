@@ -14,6 +14,11 @@ namespace DotnetAPI.Data{
             return dbConnection.Query<T>(sql);
         }
 
+        public IEnumerable<T> LoadDataWithParams<T>(string sql, DynamicParameters parameters){
+            IDbConnection dbConnection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
+            return dbConnection.Query<T>(sql, parameters);
+        }
+
         public T LoadDataSingle<T>(string sql){
             IDbConnection dbConnection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
             return dbConnection.QuerySingle<T>(sql);
@@ -24,9 +29,19 @@ namespace DotnetAPI.Data{
             return dbConnection.Execute(sql, data) > 0;
         }
 
+        public bool ExecuteSql(string sql){
+            IDbConnection dbConnection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
+            return dbConnection.Execute(sql) > 0;
+        }
+
         public int ExecuteSqlWithRowCount<T>(string sql, T data){
             IDbConnection dbConnection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
             return dbConnection.Execute(sql, data);
+        }
+
+        public bool ExecuteSqlWithParams(string sql, DynamicParameters parameters){
+            IDbConnection dbConnection = new SqlConnection(_config.GetConnectionString("DefaultConnection"));
+            return dbConnection.Execute(sql, parameters) > 0;
         }
     }
 }

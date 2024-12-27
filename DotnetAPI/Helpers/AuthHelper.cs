@@ -1,6 +1,9 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
+using DotnetAPI.Data;
+using DotnetAPI.Dtos;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.IdentityModel.Tokens;
 
@@ -9,9 +12,11 @@ namespace DotnetAPI.Helpers
     public class AuthHelper
     {
         private readonly IConfiguration _config;
+        private readonly DataContextDapper _dapper;
         public AuthHelper(IConfiguration config)
         {
             _config = config;
+            _dapper = new DataContextDapper(config);
         }
 
         public byte[] HashingFunction(string password, byte[] salt)
@@ -56,6 +61,29 @@ namespace DotnetAPI.Helpers
             SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
 
             return tokenHandler.WriteToken(token);
+        }
+
+        public bool SetPassword(UserForLoginDto userForSetPassword)
+        {
+
+            byte[] passWordSalt = new byte[128 / 8];
+            using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
+            {
+                rng.GetNonZeroBytes(passWordSalt);
+            }
+
+            byte[] passwordHash = HashingFunction(userForSetPassword.Password, passWordSalt);
+
+            string sqlAddUserToAuth = "EXEC TutorialAppSchema.spRegistration_Upsert @Email = @EmailParam, @PasswordHash = @PasswordHashParam, @PasswordSalt = @PasswordSaltParam";
+
+            var sqlParameters = new
+            {
+                EmailParam = userForSetPassword.Email,
+                PasswordHashParam = passwordHash,
+                PasswordSaltParam = passWordSalt
+            };
+
+            return _dapper.ExecuteSql(sqlAddUserToAuth, sqlParameters);
         }
     }
 }
