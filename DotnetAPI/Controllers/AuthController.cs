@@ -44,7 +44,7 @@ namespace DotnetAPI.Controllers
                     if (_authHelper.SetPassword(userForLogin))
                     {
                         if (_reusableSql.UpsertUser(_mapper.Map<UserComplete>(userForRegistration)))
-                        {   
+                        {
                             return Ok();
                         }
 
@@ -64,7 +64,7 @@ namespace DotnetAPI.Controllers
         [HttpPost("Login")]
         public IActionResult Login([FromBody] UserForLoginDto userForLogin)
         {
-            string sqlForHashAndSalt = "EXEC TutorialAppSchema.spLoginConfirmation_Get @Email = " + userForLogin.Email;
+            string sqlForHashAndSalt = "EXEC TutorialAppSchema.spLoginConfirmation_Get @Email = '" + userForLogin.Email + "'";
             UserForLoginConfirmationDto hashAndSalt = _dapper.LoadDataSingle<UserForLoginConfirmationDto>(sqlForHashAndSalt);
 
             if (hashAndSalt != null && hashAndSalt.PasswordHash != null && hashAndSalt.PasswordSalt != null)
@@ -92,8 +92,8 @@ namespace DotnetAPI.Controllers
         public IActionResult RefreshToken()
         {
             //User from ControllerBase
-            string userIdString = User.FindFirst("userId")?.Value +"";
-            
+            string userIdString = User.FindFirst("userId")?.Value + "";
+
             string userIdSql = "SELECT UserId FROM TutorialAppSchema.Users WHERE UserId = " + userIdString;
             int userIdFromDb = _dapper.LoadDataSingle<int>(userIdSql);
 
@@ -101,15 +101,14 @@ namespace DotnetAPI.Controllers
         }
 
         [HttpPut("ResetPassword")]
-        public IActionResult ResetPassword(UserForLoginDto userForSetPassword){
-            if(userForSetPassword.Password == userForSetPassword.ConfirmPassword){
-                if(_authHelper.SetPassword(userForSetPassword)){
-                    return Ok();
-                }
-                throw new Exception("Failed to reset password");
+        public IActionResult ResetPassword(UserForLoginDto userForSetPassword)
+        {
+            if (_authHelper.SetPassword(userForSetPassword))
+            {
+                return Ok();
             }
-            throw new Exception("Passwords do not match");
+            throw new Exception("Failed to reset password");
         }
-        
+
     }
 }

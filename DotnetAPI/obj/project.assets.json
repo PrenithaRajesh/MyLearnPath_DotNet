@@ -2613,11 +2613,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\DEVELOPMENT\\csharp_udemy\\DotnetAPI\\DotnetAPI.csproj",
+      "projectUniqueName": "C:\\DEVELOPMENT\\UDEMY\\csharp_udemy\\DotnetAPI\\DotnetAPI.csproj",
       "projectName": "DotnetAPI",
-      "projectPath": "C:\\DEVELOPMENT\\csharp_udemy\\DotnetAPI\\DotnetAPI.csproj",
+      "projectPath": "C:\\DEVELOPMENT\\UDEMY\\csharp_udemy\\DotnetAPI\\DotnetAPI.csproj",
       "packagesPath": "C:\\Users\\preni\\.nuget\\packages\\",
-      "outputPath": "C:\\DEVELOPMENT\\csharp_udemy\\DotnetAPI\\obj\\",
+      "outputPath": "C:\\DEVELOPMENT\\UDEMY\\csharp_udemy\\DotnetAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\preni\\AppData\\Roaming\\NuGet\\NuGet.Config",

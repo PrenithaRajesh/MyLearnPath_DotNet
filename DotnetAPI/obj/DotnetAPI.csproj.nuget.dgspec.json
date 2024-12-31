@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\DEVELOPMENT\\csharp_udemy\\DotnetAPI\\DotnetAPI.csproj": {}
+    "C:\\DEVELOPMENT\\UDEMY\\csharp_udemy\\DotnetAPI\\DotnetAPI.csproj": {}
   },
   "projects": {
-    "C:\\DEVELOPMENT\\csharp_udemy\\DotnetAPI\\DotnetAPI.csproj": {
+    "C:\\DEVELOPMENT\\UDEMY\\csharp_udemy\\DotnetAPI\\DotnetAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\DEVELOPMENT\\csharp_udemy\\DotnetAPI\\DotnetAPI.csproj",
+        "projectUniqueName": "C:\\DEVELOPMENT\\UDEMY\\csharp_udemy\\DotnetAPI\\DotnetAPI.csproj",
         "projectName": "DotnetAPI",
-        "projectPath": "C:\\DEVELOPMENT\\csharp_udemy\\DotnetAPI\\DotnetAPI.csproj",
+        "projectPath": "C:\\DEVELOPMENT\\UDEMY\\csharp_udemy\\DotnetAPI\\DotnetAPI.csproj",
         "packagesPath": "C:\\Users\\preni\\.nuget\\packages\\",
-        "outputPath": "C:\\DEVELOPMENT\\csharp_udemy\\DotnetAPI\\obj\\",
+        "outputPath": "C:\\DEVELOPMENT\\UDEMY\\csharp_udemy\\DotnetAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\preni\\AppData\\Roaming\\NuGet\\NuGet.Config",

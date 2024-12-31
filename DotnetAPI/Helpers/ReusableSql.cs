@@ -15,7 +15,7 @@ namespace DotnetAPI.Helpers
 
         public bool UpsertUser(UserComplete user)
         {
-            string sql = @"EXEC TutorialAppSchema.spUser_Upsert
+            string sql = @"EXEC TutorialAppSchema.spUsers_Upsert
             @FirstName = @FirstNameParam, 
             @LastName = @LastNameParam,
             @Email = @EmailParam,
@@ -30,7 +30,7 @@ namespace DotnetAPI.Helpers
             sqlParams.Add("@FirstNameParam", user.FirstName, DbType.String);
             sqlParams.Add("@LastNameParam", user.LastName, DbType.String);
             sqlParams.Add("@EmailParam", user.Email, DbType.String);
-            sqlParams.Add("@GenderParam", user.Gender, DbType.Boolean);
+            sqlParams.Add("@GenderParam", user.Gender, DbType.String);
             sqlParams.Add("@ActiveParam", user.Active, DbType.Boolean);
             sqlParams.Add("@JobTitleParam", user.JobTitle, DbType.String);
             sqlParams.Add("@DepartmentParam", user.Department, DbType.String);
